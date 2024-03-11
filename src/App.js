@@ -233,7 +233,8 @@ function App() {
         }
     };
 
-    const removeFile = (fileName) => {
+    const removeFile = (fileName, e) => {
+        e.preventDefault();
         setFileUploads(fileUploads.filter(file => file.name !== fileName));
     };
 
@@ -242,27 +243,33 @@ function App() {
           <Auth/>
           <div className='uploadDiv card'>
               <form className="uploadForm">
-                  <fieldset>
-                      <legend>Sender Informationen:</legend>
-                      <input type="text" id="senderFirstname" name="senderVorname" placeholder="Vorname"
-                             onChange={(e) => setNewSenderFirstName(e.target.value)} required/><br/>
-                      <input type="text" id="senderLastname" name="senderNachname" placeholder="Nachname"
-                             onChange={(e) => setNewSenderLastName(e.target.value)} required/><br/>
-                      <input type="text" id="senderStreet" name="senderStrasse" placeholder="Starße"
-                             onChange={(e) => setNewSenderStreet(e.target.value)} required/><br/>
-                      <input type="text" id="senderZip" name="senderPLZ" placeholder="PLZ"
-                             onChange={(e) => setNewSenderZip(e.target.value)}/><br/>
-                      <input type="text" id="senderLocation" name="senderOrt" placeholder="Ort"
-                             onChange={(e) => setNewSenderLocation(e.target.value)} required/><br/>
-                      <input type="text" id="senderAdditional" name="senderAdditional" placeholder="Adresszusatz"
-                             onChange={(e) => setNewSenderAdditional(e.target.value)}/><br/>
-                      <input type="email" id="senderEmail" name="senderEmail" placeholder="Email"
-                             onChange={(e) => setNewSenderEmail(e.target.value)} required/><br/>
+                  <fieldset className="uploadSenderFieldset">
+                      <legend className='uploadLegend unselectable'>Sender:</legend>
+                      <div className="uploadNameDiv">
+                          <input type="text" className='unselectable' id="senderFirstname" name="senderVorname" placeholder="Vorname"
+                                 onChange={(e) => setNewSenderFirstName(e.target.value)} required/>
+                          <input type="text" className='unselectable' id="senderLastname" name="senderNachname" placeholder="Nachname"
+                                 onChange={(e) => setNewSenderLastName(e.target.value)} required/>
+                      </div>
+                      <br className='unselectable'/>
+                      <input type="text" className='unselectable' id="senderStreet" name="senderStrasse" placeholder="Starße"
+                             onChange={(e) => setNewSenderStreet(e.target.value)} required/>
+                      <input type="text" className='unselectable' id="senderAdditional" name="senderAdditional" placeholder="Adresszusatz"
+                             onChange={(e) => setNewSenderAdditional(e.target.value)}/>
+                      <div className="uploadZipLocationDiv">
+                          <input type="text" className='unselectable' id="senderZip" name="senderPLZ" placeholder="PLZ"
+                                 onChange={(e) => setNewSenderZip(e.target.value)}/>
+                          <input type="text" className='unselectable' id="senderLocation" name="senderOrt" placeholder="Ort"
+                                 onChange={(e) => setNewSenderLocation(e.target.value)} required/>
+                      </div>
+                      <br className='unselectable'/>
+                      <input type="email" className='unselectable' id="senderEmail" name="senderEmail" placeholder="Email"
+                             onChange={(e) => setNewSenderEmail(e.target.value)} required/>
                   </fieldset>
                   <form className='uploadFileForm'>
 
                       <label htmlFor="file-upload" className="custom-file-upload">
-                          <ExportIc className="exportIc" color={'black'}/>
+                          <ExportIc className="exportIc" color={'black'} width={40} height={40}/>
                       </label>
 
                       <input type="file" id="file-upload" name="fileUpload" accept=".jpg, .jpeg, .png, .pdf"
@@ -272,22 +279,30 @@ function App() {
                           {NameUploadedFiles(fileUploads, removeFile)}
                       </ul>
                   </form>
-                  <fieldset>
-                      <legend>Empfänger Informationen:</legend>
-                      <input type="text" id="recipientFirstname" name="empfaengerVorname" placeholder="Vorname"
-                             onChange={(e) => setNewRecipientFirstName(e.target.value)} required/><br/>
-                      <input type="text" id="recipientLastname" name="empfaengerNachname" placeholder="Nachname"
-                             onChange={(e) => setNewRecipientLastName(e.target.value)} required/><br/>
-                      <input type="text" id="recipientStreet" name="empfaengerStrasse" placeholder="Starße"
-                             onChange={(e) => setNewRecipientStreet(e.target.value)} required/><br/>
-                      <input type="text" id="recipientZip" name="empfaengerPLZ" placeholder="PLZ"
-                             onChange={(e) => setNewRecipientZip(e.target.value)}/><br/>
-                      <input type="text" id="recipientLocation" name="empfaengerOrt" placeholder="Ort"
-                             onChange={(e) => setNewRecipientLocation(e.target.value)} required/><br/>
-                      <input type="text" id="recipientCountry" name="empfaengerLand" placeholder="Land"
-                             onChange={(e) => setNewRecipientCountry(e.target.value)} required/><br/>
-                      <input type="text" id="recipientAdditional" name="empfaengerAdditional" placeholder="Adresszusatz"
-                             onChange={(e) => setNewRecipientAdditional(e.target.value)}/><br/>
+                  <fieldset className="uploadRecipientFieldset">
+                      <legend className='uploadLegend unselectable'>Empfänger:</legend>
+                      <div className="uploadNameDiv">
+                          <input type="text" className='unselectable' id="recipientFirstname" name="empfaengerVorname" placeholder="Vorname"
+                                 onChange={(e) => setNewRecipientFirstName(e.target.value)} required/>
+                          <input type="text" className='unselectable' id="recipientLastname" name="empfaengerNachname" placeholder="Nachname"
+                                 onChange={(e) => setNewRecipientLastName(e.target.value)} required/>
+                      </div>
+                      <br className='unselectable'/>
+                      <input type="text" className='unselectable' id="recipientStreet" name="empfaengerStrasse" placeholder="Starße"
+                             onChange={(e) => setNewRecipientStreet(e.target.value)} required/>
+                      <input type="text" className='unselectable' id="recipientAdditional" name="empfaengerAdditional"
+                             placeholder="Adresszusatz"
+                             onChange={(e) => setNewRecipientAdditional(e.target.value)}/>
+                      <div className="uploadZipLocationDiv">
+                          <input type="text" className='unselectable' id="recipientZip" name="empfaengerPLZ" placeholder="PLZ"
+                                 onChange={(e) => setNewRecipientZip(e.target.value)}/>
+                          <input type="text" className='unselectable' id="recipientLocation" name="empfaengerOrt" placeholder="Ort"
+                                 onChange={(e) => setNewRecipientLocation(e.target.value)} required/>
+                          <input type="text" className='unselectable' id="recipientCountry" name="empfaengerLand" placeholder="Land"
+                                 onChange={(e) => setNewRecipientCountry(e.target.value)} required/>
+                      </div>
+                      <br className='unselectable'/>
+                      <input style={{ background: 'transparent' }} disabled></input>
                   </fieldset>
               </form>
               <button className='uploadButton'
@@ -298,82 +313,82 @@ function App() {
                           const newId = generateDetailedTimestampId(); // Generiert eine neue ID bei jedem Klick
                           await uploadFiles(newId); // Ruft uploadFile auf, nachdem die neue ID gesetzt wurde
                       }}>
-                  <span>Submit</span>
+                  <span className=' unselectable'>Submit</span>
                   <SendMailAic
                       isStopped={isStopped}
                   />
               </button>
           </div>
-          <button onClick={toggleSortOrder}>Sortierung umkehren</button>
-          <div>
+          <button className='unselectable' onClick={toggleSortOrder}>Sortierung umkehren</button>
+          <div className='orderDivContainer'>
               {orderList.map((order) => (
                   <div key={order.id} className="orderDiv card">
                       <h2 className="orderH2">{order.OrderId}</h2>
                       <form className="orderForm">
                           <fieldset className="orderSenderFieldset">
-                              <legend>Sender Informationen:</legend>
-                              <input type="text" className="orderSenderInput" id="senderFirstname" name="senderVorname"
+                              <legend className='orderLegend unselectable'>Sender Informationen:</legend>
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderFirstname" name="senderVorname"
                                      placeholder={order.SenderFirstname}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderFirstName(e.target.value)} required/><br/>
-                              <input type="text" className="orderSenderInput" id="senderLastname" name="senderNachname"
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderLastname" name="senderNachname"
                                      placeholder={order.SenderLastname}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderLastName(e.target.value)} required/><br/>
-                              <input type="text" className="orderSenderInput" id="senderStreet" name="senderStrasse"
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderStreet" name="senderStrasse"
                                      placeholder={order.SenderStreet}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderStreet(e.target.value)} required/><br/>
-                              <input type="text" className="orderSenderInput" id="senderZip" name="senderPLZ"
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderZip" name="senderPLZ"
                                      placeholder={order.SenderZip}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderZip(e.target.value)}/><br/>
-                              <input type="text" className="orderSenderInput" id="senderLocation" name="senderOrt"
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderLocation" name="senderOrt"
                                      placeholder={order.SenderLocation}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderLocation(e.target.value)} required/><br/>
-                              <input type="text" className="orderSenderInput" id="senderAdditional"
+                              <input type="text" className="orderSenderInput unselectable" id="orderSenderAdditional"
                                      name="senderAdditional"
                                      placeholder={order.SenderAdditional}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderAdditional(e.target.value)}/><br/>
-                              <input type="email" className="orderSenderInput" id="senderEmail" name="senderEmail"
+                              <input type="email" className="orderSenderInput unselectable" id="orderSenderEmail" name="senderEmail"
                                      placeholder={order.SenderEmail}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedSenderEmail(e.target.value)} required/><br/>
                           </fieldset>
                           <fieldset className="orderRecipientFieldset">
-                              <legend>Empfänger Informationen:</legend>
-                              <input type="text" className="orderRecipientInput" id="recipientFirstname"
+                              <legend className='orderLegend unselectable'>Empfänger Informationen:</legend>
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientFirstname"
                                      name="empfaengerVorname"
                                      placeholder={order.RecipientFirstname}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientFirstName(e.target.value)} required/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientLastname"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientLastname"
                                      name="empfaengerNachname"
                                      placeholder={order.RecipientLastname}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientLastName(e.target.value)} required/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientStreet"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientStreet"
                                      name="empfaengerStrasse"
                                      placeholder={order.RecipientStreet}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientStreet(e.target.value)} required/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientZip" name="empfaengerPLZ"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientZip" name="empfaengerPLZ"
                                      placeholder={order.RecipientZip}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientZip(e.target.value)}/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientLocation"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientLocation"
                                      name="empfaengerOrt"
                                      placeholder={order.RecipientLocation}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientLocation(e.target.value)} required/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientCountry"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientCountry"
                                      name="empfaengerLand"
                                      placeholder={order.RecipientCountry}
                                      readOnly={!isEditable}
                                      onChange={(e) => setUpdatedRecipientCountry(e.target.value)} required/><br/>
-                              <input type="text" className="orderRecipientInput" id="recipientAdditional"
+                              <input type="text" className="orderRecipientInput unselectable" id="orderRecipientAdditional"
                                      name="empfaengerAdditional"
                                      placeholder={order.RecipientAdditional}
                                      readOnly={!isEditable}
@@ -383,7 +398,7 @@ function App() {
                       <section className="orderSection">
                           <nav className="orderNav">
                               {fileList[order.id]?.map((url, index) => ( // Stellt sicher, dass nur die URLs für die spezifische Bestellung angezeigt werden
-                                  <a className="orderFileLink" key={index} href={url} target="_blank"
+                                  <a className="orderFileLink unselectable" key={index} href={url} target="_blank"
                                      rel="noopener noreferrer">
                                       Datei {index + 1}
                                       <ExternalIc className="updateIc" color={'black'}/>

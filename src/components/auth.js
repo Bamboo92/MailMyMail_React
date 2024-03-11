@@ -32,18 +32,20 @@ export const Auth = () => {
     return (
         <form>
             <input
+                className='unselectable'
                 placeholder="Email"
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
             />
             <input
+                className='unselectable'
                 placeholder="Password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={signIn}>Sign In</button>
-            <button onClick={signInWithGoogle}>Sign In With Google</button>
-            <button onClick={logout}>Logout</button>
+            <button className='unselectable' onClick={signIn}>Sign In</button>
+            <button className='unselectable' onClick={signInWithGoogle}>Sign In With Google</button>
+            <button className='unselectable' onClick={logout}>Logout</button>
         </form>
     );
 };

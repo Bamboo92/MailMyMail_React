@@ -2,7 +2,7 @@ import React from 'react';
 import DeleteIc from "../icons/delete_ic";
 
 export const NameUploadedFiles = (files, onRemove) => {
-    const maxLength = 15; // Maximale Länge, die angezeigt werden soll
+    const maxLength = 20; // Maximale Länge, die angezeigt werden soll
 
     return Array.from(files).map((file, index) => {
         let displayName = file.name;
@@ -14,9 +14,9 @@ export const NameUploadedFiles = (files, onRemove) => {
         }
 
         return (
-            <li className='uploadedFileLi' key={index}>
-                <span className='uploadedFileName'>{displayName}</span>
-                <button className='uploadedFileBtn' onClick={() => onRemove(file.name)}><DeleteIc className="uploadedFileDeleteIc" color={'red'}/></button>
+            <li className='uploadedFileLi unselectable' key={index}>
+                <span className='uploadedFileName unselectable'>{displayName}</span>
+                <button className='uploadedFileBtn unselectable' onClick={(e) => onRemove(file.name, e)}><DeleteIc className="uploadedFileDeleteIc" color={'red'}/></button>
             </li>
         );
     });
